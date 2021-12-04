@@ -135,13 +135,15 @@ public class MainActivity extends AppCompatActivity {
                     String city = address.getLocality();
                     if(city != null && !city.equals("")){
                         cityName = city;
-                    }else{
-                        Toast.makeText(this, "CITY NOT FOUND", Toast.LENGTH_LONG).show();
+                        break;
                     }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        if(cityName.equals("Not Found")){
+            Toast.makeText(this, "CITY NOT FOUND", Toast.LENGTH_LONG).show();
         }
         return cityName;
     }
@@ -174,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         Picasso.get().load("").into(backgroundIV);
                     }*/
 
-                    JSONObject forecastObj = response.getJSONObject("forecase");
+                    JSONObject forecastObj = response.getJSONObject("forecast");
                     JSONObject forecast0 = forecastObj.getJSONArray("forecastday").getJSONObject(0);
                     JSONArray hourArray = forecast0.getJSONArray("hour");
 
@@ -188,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                         weatherInfoList.add(new WeatherModel(time, temperature, img, wind));
                     }
 
-                    adapter.notifyDataSetChanged();
+                    adapter.setData(weatherInfoList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
