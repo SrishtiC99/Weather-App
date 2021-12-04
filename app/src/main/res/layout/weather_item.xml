@@ -43,7 +43,7 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
             android:padding="4dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/weather"/>
 
         <TextView
             android:id="@+id/wind_speed_tv"
